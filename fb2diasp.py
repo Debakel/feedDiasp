@@ -66,11 +66,16 @@ class FB2Diasp:
 			if not self.db.already_posted(post.id):
 				print 'Neuer Post: ' + post.title
 				try:
-					text = '### ' + post.title + '\n\n' + post.summary + '\n\n\nVon: ' + post.link
-					text = text + '\n\n'
+					text = '### ' + post.title + '\n\n'
+					if hasattr(post, 'content'):
+						text += post.content[0].value
+					else:
+						text += post.summary
+					text  += '\n\n\nVon: ' + post.link
+					text += '\n\n'
 					if self.hashtags is not None:
 						for hashtag in self.hashtags:
-							text = text + '#' + hashtag + ' '
+							text += '#' + hashtag + ' '
 					self.diasp.post(text)
 					self.db.mark_as_posted(post.id)
 				except Exception as e:
