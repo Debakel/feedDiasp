@@ -8,7 +8,7 @@ from PostDB import PostDB
 from RSSParser import RSSParser
 
 class FeedDiasp:
-	def __init__(self, feed_url, pod, username, password, db, keywords=None):
+	def __init__(self, feed_url, pod, username, password, db, keywords=None, append=None):
 		#UnicodeEncodeError Workaround
 		reload(sys);
 		sys.setdefaultencoding("utf8")
@@ -22,6 +22,7 @@ class FeedDiasp:
 		self.username = username
 		self.password = password
 		self.keywords = keywords
+		self.append = append
 		self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password)
 		
 		
@@ -48,7 +49,7 @@ class FeedDiasp:
 					else:
 						text = post.summary
 					hashtags = self.find_hashtags(text, self.keywords)
-					self.diasp.post(text, title=post.title, hashtags=hashtags, source=post.link)
+					self.diasp.post(text, title=post.title, hashtags=hashtags, source=post.link, append=self.append)
 					self.db.mark_as_posted(post.id)
 				except Exception as e:
 					print 'Fehler beim veröffentlichen: ' + str(e)		

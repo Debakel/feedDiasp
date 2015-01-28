@@ -16,15 +16,17 @@ class Diasp:
 			self.logged_in = True
 		except Exception as e:
 			print 'Fehler beim Login: ' + str(e)
-	def post(self, text, title=None, hashtags=None, source=None):
+	def post(self, text, title=None, hashtags=None, source=None, append=None):
 		if not self.logged_in:
 			self.login()
 		if title is not None:
-			text = '### ' + title + '\n\n' + text
+			text = '### ' + title + '\n\n' + text	
+		if source is not None:
+			text  += '\n\n\nVon: ' + source
 		if hashtags is not None:
 			text += '\n\nHashtags: '
 			for hashtag in hashtags:
-				text += '#' + hashtag + ' '		
-		if source is not None:
-				text  += '\n\n\nVon: ' + source
+				text += '#' + hashtag + ' '	
+		if append is not None:
+			text += '\n' + append
 		self.stream.post(text)
