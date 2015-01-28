@@ -23,7 +23,7 @@ class Diasp:
 			text = '### ' + title + '\n\n' + text	
 		if source is not None:
 			text  += '\n\n\nVon: ' + source
-		if hashtags is not None:
+		if hashtags is not None and len(hashtags) > 0:
 			text += '\n\nHashtags: '
 			for hashtag in hashtags:
 				text += '#' + hashtag + ' '	
