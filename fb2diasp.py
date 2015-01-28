@@ -4,6 +4,7 @@
 import time
 import diaspy
 import feedparser
+import sys
 class Diasp:
 	def __init__(self, pod=None, username=None, password=None):
 		self.pod	= pod
@@ -38,6 +39,10 @@ class PostDB:
 			return False		
 class FB2Diasp:
 	def __init__(self, feed_url, pod, username, password, db, hashtags=None):
+		#UnicodeEncodeError Workaround
+		reload(sys);
+		sys.setdefaultencoding("utf8")
+		
 		self.feed_url = feed_url
 		self.pod = pod
 		self.username = username
