@@ -9,7 +9,7 @@ Feed Diaspora with RSS-Feeds or Facebook.
 
     from FeedDiasp import FeedDiasp
     
-    bot = FeedDiasp(feed_url='https://netzpolitik.org/feed', pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.db')
+    bot = FeedDiasp(feed_url='https://netzpolitik.org/feed', pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.txt')
     bot.publish()
 
 
