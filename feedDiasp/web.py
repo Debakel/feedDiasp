@@ -33,7 +33,7 @@ def add():
 @route('/')
 def index():
 	return '''
-        <form action="/add" method="post">
+        <form action="add" method="post">
             Feed: <input name="feed_url" type="text" />
             User: <input name="username" type="text" />
             Passwort: <input name="password" type="text" />
