@@ -19,7 +19,7 @@ class Diasp:
 	def post(self, text, title=None, hashtags=None, source=None, append=None):
 		if not self.logged_in:
 			self.login()
-		if title is not None:
+		if title is not None and len(title) > 0:
 			text = '### ' + title + '\n\n' + text	
 		if source is not None:
 			text  += '\n\n\nVon: ' + source

@@ -6,26 +6,25 @@ import sys
 from Diasp import Diasp
 from PostDB import PostDB
 from RSSParser import RSSParser
-
+from FBParser import FBParser
 class FeedDiasp:
-	def __init__(self, feed_url, pod, username, password, db, keywords=None, append=None):
+	def __init__(self, pod, username, password, db, parser, keywords=None, append=None):
 		#UnicodeEncodeError Workaround
 		reload(sys);
 		sys.setdefaultencoding("utf8")
 		
-		#RSS Quelle
-		self.feed_url = feed_url
-		self.feed = RSSParser(url=feed_url)
-		
+		#Quelle
+		self.feed = parser
+				
 		#Diaspora
 		self.pod = pod
 		self.username = username
 		self.password = password
+		
 		self.keywords = keywords
 		self.append = append
 		self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password)
-		
-		
+				
 		self.db = PostDB(filename=db) #markiert bereits veröffentlichte Einträge
 		
 		self.logged_in = False
@@ -38,19 +37,15 @@ class FeedDiasp:
 	def publish(self):
 		if not self.diasp.logged_in:
 			self.diasp.login()
-		self.feed.parse()
-		posts = self.feed.get_posts()
+		self.feed.update()
+		posts = self.feed.get_entries()
 		for post in posts:
-			if not self.db.is_published(post.id):
-				print 'Veröffentliche: ' + post.title
+			if not self.db.is_published(post['id']):
+				print 'Veröffentliche: ' + post['title']
 				try:
-					if 'content' in post:
-						text = post.content[0].value
-					else:
-						text = post.summary
-					hashtags = self.find_hashtags(text, self.keywords)
-					self.diasp.post(text, title=post.title, hashtags=hashtags, source=post.link, append=self.append)
-					self.db.mark_as_posted(post.id)
+					hashtags = self.find_hashtags(post['content'], self.keywords)
+					self.diasp.post(text=post['content'], title=post['title'], hashtags=hashtags, source=post['link'], append=self.append)
+					self.db.mark_as_posted(post['id'])
 				except Exception as e:
 					print 'Fehler beim veröffentlichen: ' + str(e)		
 

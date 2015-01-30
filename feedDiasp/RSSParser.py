@@ -4,7 +4,18 @@ import feedparser
 class RSSParser:
 	def __init__(self, url):
 		self.url = url
-	def parse(self):
+	def update(self):
 		self.feed = feedparser.parse(self.url)
-	def get_posts(self):
-		return self.feed.entries
+	def get_entries(self):
+		entries=[]
+		for entry in self.feed.entries:
+			x={}
+			x['id'] = entry.id
+			x['title'] = entry.title
+			x['link'] = entry.link
+			if 'content' in entry:
+				x['content'] = entry.content[0].value
+			else:
+				x['link'] = entry.summary
+			entries.append(x)
+		return entries
