@@ -16,6 +16,6 @@ class RSSParser:
 			if 'content' in entry:
 				x['content'] = entry.content[0].value
 			else:
-				x['link'] = entry.summary
+				x['content'] = entry.summary
 			entries.append(x)
 		return entries
