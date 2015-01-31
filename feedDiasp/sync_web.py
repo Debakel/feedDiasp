@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from FeedDiasp import FeedDiasp
-from DB import Store, Feed
-
-db=Store()
-for feed in db.load(Feed):
-	print feed.username
-	bot = FeedDiasp(feed_url=feed.feed, pod=feed.pod, username=feed.username, password=feed.password, db='posts.db', keywords=keywords)
-	bot.publish()
-
-
+from RSSParser import RSSParser
+from FBParser import FBParser
+import dataset
+db = dataset.connect('sqlite:///mydatabase.db')
+for user in db['user']:
+	print user['username'] + '@' + user['pod']  + ': ' + user['source'] 
+	if user['source_type'] == 'fb':
+		print 'FB ausgelassen'
+	elif user['source_type'] == 'rss':
+		print 'RSS'
+		parser = RSSParser(user['source'])
+		diasp = FeedDiasp(parser=parser, username=user['username'], password=user['password'], pod=user['pod'], db='posts.db')
+		diasp.publish()
