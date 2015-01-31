@@ -77,7 +77,7 @@
 				
 		</div>
 		<input type="password" id="password" name="password" class="form-control" placeholder="Password" required autofocus>
-        <input type="text" id="feed_url" class="form-control" placeholder="https://example.org/feed.rss" required>
+        <input type="text" id="feed_url" name="feed_url" class="form-control" placeholder="https://example.org/feed.rss" required>
       
         <button class="btn btn-lg btn-primary btn-block" type="submit">Eintragen</button>
        
