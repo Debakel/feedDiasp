@@ -18,10 +18,8 @@ def add():
 		c=diaspy.connection.Connection(pod=pod,username=username, password=password)
 		c.login()
 		success=True
-	except LoginError:
-		success=False
-	except DiaspyError:
-		sucess=False
+	#except LoginError as e:
+	#except DiaspyError as e:
 	except Exception as e:
 		success=False
 		return str(e)
