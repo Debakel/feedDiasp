@@ -22,7 +22,7 @@ Feed Diaspora with RSS-Feeds or Facebook.
     bot = FeedDiasp(parser=rss, pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.txt')
     bot.publish()
     
-To avoid duplicates. submitted posts will be stored in `posts.txt` (defined in `db`).
+To avoid duplicates, submitted posts will be stored in `posts.txt` (defined in `db`).
 
 ## License
 
