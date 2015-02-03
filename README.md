@@ -3,15 +3,25 @@ Feed Diaspora with RSS-Feeds or Facebook.
 ## Requirements
 
  * feedparser `pip install feedparser`
+ * facepy `pip install facepy`
  * diaspy `pip install diaspy`
 
 ## Usage
 
     from FeedDiasp import FeedDiasp
+    from FBParser import FBParser
     
-    bot = FeedDiasp(feed_url='https://netzpolitik.org/feed', pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.txt')
+    #Sync posts from a facebook site
+    fb = FBParser(user='spiegelonline', auth_token='...')
+    bot = FeedDiasp(parser=fb, pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.txt')
     bot.publish()
-
+    
+    #Sync posts from a RSS feed
+    rss = RSSParser(url='http://www.spiegel.de/schlagzeilen/index.rss')
+    bot = FeedDiasp(parser=rss, pod='https://diasp.eu', username='zwirbel', password='Blume123', db='posts.txt')
+    bot.publish()
+    
+To avoid duplicates. submitted posts will be stored in `posts.txt` (defined in `db`).
 
 ## License
 
