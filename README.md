@@ -10,6 +10,7 @@ Feed Diaspora with RSS-Feeds or Facebook.
 
     from FeedDiasp import FeedDiasp
     from FBParser import FBParser
+    from RSSParser import RSSParser
     
     #Sync posts from a facebook site
     fb = FBParser(user='spiegelonline', auth_token='...')
