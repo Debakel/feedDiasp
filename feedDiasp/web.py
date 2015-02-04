@@ -9,6 +9,7 @@ from bottle import route, run, template, post, get, request
 
 
 @post('/add')
+@get('/add')
 def add():
 	fb = request.forms.get('fb')
 	feed = request.forms.get('feed_url')
@@ -35,13 +36,12 @@ def add():
 			message = 'Eintrag hinzugefuegt.'
 		else:
 			success = False
-			message = 'Bereits in Datenbank  (' + username + ' auf ' + pod + ')' 	
+			message = 'Bereits in Datenbank  (' + username + ' auf ' + pod + '). Feed: ' + feed 	
 	except Exception as e:
 		success=False
 		message='Login nicht moeglich.'
 		
 	return json.dumps(dict(success=success, message=message))
-@get('/add')	
 @route('/')
 def index():
 	return template('add')
