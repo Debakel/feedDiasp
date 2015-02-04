@@ -16,6 +16,7 @@ def server_static(filename):
 @post('/api/add')
 @get('/api/add')
 def add():
+	import feedparser
 	fb = request.forms.get('fb')
 	feed = request.forms.get('feed_url')
 	username = request.forms.get('username')
@@ -24,7 +25,11 @@ def add():
 	if not ('https://' in pod or 'https://' in pod):
 		pod = 'https://' + pod
 	print username+password+pod
-
+	
+	# Check feed
+	if feedparser.parse(feed).bozo:
+		return json.dumps(dict(success=False, message='Ungültiger Feed.'))
+	# Check login data	
 	try:
 		c=diaspy.connection.Connection(pod=pod,username=username, password=password)
 		c.login()
@@ -43,10 +48,11 @@ def add():
 			message = 'Eintrag hinzugefuegt.'
 		else:
 			success = False
-			message = 'Bereits in Datenbank  (' + username + ' auf ' + pod + '). Feed: ' + feed 	
+			message = 'Bereits eingetragen.'
+			#message = 'Bereits in Datenbank  (' + username + ' auf ' + pod + '). Feed: ' + feed 	
 	except Exception as e:
 		success=False
-		message='Login nicht moeglich.'
+		message='Loginfehler.'
 		
 	return json.dumps(dict(success=success, message=message))
 @get('/api/delete')
