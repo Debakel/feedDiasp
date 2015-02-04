@@ -20,8 +20,10 @@ class FeedDiasp:
 		self.pod = pod
 		self.username = username
 		self.password = password
-		
-		self.keywords = keywords
+		if keywords is not None:
+			self.keywords = keywords
+		else:
+			self.keywords = []
 		self.append = append
 		self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password)
 				
@@ -42,8 +44,8 @@ class FeedDiasp:
 		for post in posts:
 			if not self.db.is_published(post['id']):
 				print 'Veröffentliche: ' + post['title']
+				hashtags = self.find_hashtags(post['content'], self.keywords)				
 				try:
-					hashtags = self.find_hashtags(post['content'], self.keywords)
 					self.diasp.post(text=post['content'], title=post['title'], hashtags=hashtags, source=post['link'], append=self.append)
 					self.db.mark_as_posted(post['id'])
 				except Exception as e:
