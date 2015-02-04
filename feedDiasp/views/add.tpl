@@ -21,7 +21,7 @@
 
 	<script>
 	function PostData() {
-		
+	$('#result').addClass('hide');
     // 1. Create XHR instance - Start
     var xhr;
     if (window.XMLHttpRequest) {
@@ -42,12 +42,12 @@
 				$("#result").show()
                 document.getElementById('result').innerHTML = obj.message;
                 if(obj.success){
-					$("#result").removeClass('alert-warning');
-					$("#result").addClass('alert-sucess');
+					$("#result").removeClass('label-warning');
+					$("#result").addClass('label-sucess');
 				}
 				else{
-					$("#result").removeClass('alert-sucess');
-					$("#result").addClass('alert-warning');		
+					$("#result").removeClass('label-sucess');
+					$("#result").addClass('label-warning');		
 				}		
                 $("#result").removeClass('hide');
             }
@@ -87,8 +87,9 @@
 		</form>
 		<div class="form-signin">
 			<button class="btn btn-lg btn-primary btn-block" onclick="PostData()">Eintragen</button>
-			<div class="hide alert alert-info form-signin" role="alert" id="result">Hallo</div>
+			<div class="hide label" role="label" id="result"></div>
 		</div>
+		
 	</div>
   </body>
 </html>
