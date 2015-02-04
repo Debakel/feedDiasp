@@ -8,63 +8,17 @@
     <meta name="author" content="">
 
     <title>feedDiasp*</title>
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="static/bootstrap.min.css" />
+<link rel="stylesheet" href="static/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="static/jquery-ui.css" />
+<link rel="stylesheet" href="static/style.css" />
 
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="static/jquery-1.9.1.js"></script>
+<script src="static/jquery.min.js"></script>
 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<style>
-		body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
+<script src="static//bootstrap.min.js"></script>
+<script src="static/jquery-ui.js"></script>
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: 1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  }
-  .form-signin button[type="submit"] {
-  margin-top: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-	</style>
 	<script>
 	function PostData() {
 		
