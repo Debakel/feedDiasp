@@ -43,10 +43,10 @@
                 document.getElementById('result').innerHTML = obj.message;
                 if(obj.success){
 					$("#result").removeClass('label-warning');
-					$("#result").addClass('label-sucess');
+					$("#result").addClass('label-success');
 				}
 				else{
-					$("#result").removeClass('label-sucess');
+					$("#result").removeClass('label-success');
 					$("#result").addClass('label-warning');		
 				}		
                 $("#result").removeClass('hide');
@@ -76,12 +76,12 @@
 		<form class="form-signin" name="form">
 			<h1>feedDiasp*</h1>
 			<div class="input-group">
-				<input type="text" class="form-control" name="username" id="username" placeholder="Nutzername">
+				<input type="text" class="form-control" name="username" id="username" placeholder="Nutzername" required autofocus>
 				<div class="input-group-addon">@</div>
-				<input type="text" class="form-control" name="pod" id="pod" placeholder="Pod" >			
+				<input type="text" class="form-control" name="pod" id="pod" placeholder="Pod" required>			
 			</div>
-			<input type="password" id="password" name="password" class="form-control" placeholder="Password"  autofocus>
-			<input type="text" id="feed_url" name="feed_url" class="form-control" placeholder="https://example.org/feed.rss" >
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password"  required>
+			<input type="text" id="feed_url" name="feed_url" class="form-control" placeholder="https://example.org/feed.rss" required>
 			
 
 		</form>
