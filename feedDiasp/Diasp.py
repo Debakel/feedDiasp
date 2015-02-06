@@ -16,6 +16,7 @@ class Diasp:
 			self.logged_in = True
 		except Exception as e:
 			print 'Fehler beim Login: ' + str(e)
+			raise LoginException(str(e))
 	def post(self, text, title=None, hashtags=None, source=None, append=None):
 		if not self.logged_in:
 			self.login()
@@ -30,3 +31,5 @@ class Diasp:
 		if append is not None:
 			text += '\n' + append
 		self.stream.post(text)
+class LoginException(Exception):
+	pass

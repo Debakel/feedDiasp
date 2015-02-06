@@ -8,7 +8,7 @@ from PostDB import PostDB
 from RSSParser import RSSParser
 from FBParser import FBParser
 class FeedDiasp:
-	def __init__(self, pod, username, password, db, parser, keywords=None, append=None):
+	def __init__(self, pod, username, password, db, parser, keywords=None, hashtags=None, append=None):
 		#UnicodeEncodeError Workaround
 		reload(sys);
 		sys.setdefaultencoding("utf8")
@@ -20,12 +20,13 @@ class FeedDiasp:
 		self.pod = pod
 		self.username = username
 		self.password = password
-		if keywords is not None:
-			self.keywords = keywords
-		else:
-			self.keywords = []
-		self.append = append
 		self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password)
+		
+		self.keywords = keywords if keywords is not None else []
+		#self.hashtags = hashtags if hashtags is not None else []
+		self.hashtags = hashtags
+		self.append = append
+		
 				
 		self.db = PostDB(filename=db) #markiert bereits veröffentlichte Einträge
 		
@@ -44,7 +45,9 @@ class FeedDiasp:
 		for post in posts:
 			if not self.db.is_published(post['id']):
 				print 'Veröffentliche: ' + post['title']
-				hashtags = self.find_hashtags(post['content'], self.keywords)				
+				hashtags = self.find_hashtags(post['content'], self.keywords)
+				if self.hashtags is not None:
+					hashtags.extend(self.hashtags)				
 				try:
 					self.diasp.post(text=post['content'], title=post['title'], hashtags=hashtags, source=post['link'], append=self.append)
 					self.db.mark_as_posted(post['id'])
