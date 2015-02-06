@@ -23,13 +23,13 @@ class Diasp:
 		if title is not None and len(title) > 0:
 			text = '### ' + title + '\n\n' + text	
 		if source is not None:
-			text  += '\n\n\nVon: ' + source
+			text  += '\n\n' + source
 		if hashtags is not None and len(hashtags) > 0:
-			text += '\n\nHashtags: '
+			text += '  \n'
 			for hashtag in hashtags:
 				text += '#' + hashtag + ' '	
 		if append is not None:
-			text += '\n' + append
+			text += '  \n' + append
 		self.stream.post(text)
 class LoginException(Exception):
 	pass
