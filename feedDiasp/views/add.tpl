@@ -75,6 +75,7 @@
    <div class="container">
 		<form class="form-signin" name="form">
 			<h1>feedDiasp*</h1>
+			
 			<div class="input-group">
 				<input type="text" class="form-control" name="username" id="username" placeholder="Nutzername" required autofocus>
 				<div class="input-group-addon">@</div>
@@ -88,6 +89,9 @@
 		<div class="form-signin">
 			<button class="btn btn-lg btn-primary btn-block" onclick="PostData()">Eintragen</button>
 			<div class="hide label" role="label" id="result"></div>
+		</div>
+		<div class="form-signin text-center">
+			<a href="https://flattr.com/submit/auto?user_id=mfd&url=https%3A%2F%2Fmrtz.me%2FfeedDiasp" target="_blank"><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 		</div>
 		
 	</div>
