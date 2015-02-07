@@ -10,9 +10,15 @@ class RSSParser:
 		entries=[]
 		for entry in self.feed.entries:
 			x={}
-			x['id'] = entry.id
-			x['title'] = entry.title
-			x['link'] = entry.link
+			if 'id' in entry:
+				x['id'] = entry.id
+			elif 'link' in entry:
+				x['id'] = entry.link
+			else:
+				# entry überspringen
+				break
+			x['title'] = entry.title if 'title' in entry else ''
+			x['link'] = entry.link if 'link' in entry else ''
 			if 'content' in entry:
 				x['content'] = entry.content[0].value
 			elif 'summary' in entry:
