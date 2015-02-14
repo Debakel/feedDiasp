@@ -28,4 +28,4 @@ class RSSParser:
 			else:
 				x['content'] = ''
 			entries.append(x)
-		return entries
+		return reversed(entries)
