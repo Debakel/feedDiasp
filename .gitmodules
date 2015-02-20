@@ -1,0 +1,3 @@
+[submodule "diaspy"]
+	path = diaspy
+	url = git@github.com:marekjm/diaspy.git
