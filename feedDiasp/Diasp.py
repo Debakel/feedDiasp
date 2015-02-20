@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 import diaspy
 class Diasp:
-	def __init__(self, pod=None, username=None, password=None):
+	def __init__(self, pod=None, username=None, password=None, provider_name=''):
 		self.pod	= pod
 		self.username = username
 		self.password = password
 		self.logged_in = False
+		self.provider_name = provider_name
 	def login(self):
 		print 'Anmelden als '+self.username+' bei '+self.pod		
 		try:
@@ -30,6 +31,6 @@ class Diasp:
 				text += '#' + hashtag + ' '	
 		if append is not None:
 			text += '  \n' + append
-		self.stream.post(text)
+		self.stream.post(text, provider_display_name=self.provider_name)
 class LoginException(Exception):
 	pass
