@@ -7,7 +7,7 @@ class Diasp:
     self.username = username
     self.password = password
     self.logged_in = False
-	self.provider_name = provider_name
+    self.provider_name = provider_name
   def login(self):
     print 'Login as '+self.username+' to '+self.pod   
     try:
