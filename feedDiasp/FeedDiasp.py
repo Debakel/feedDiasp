@@ -27,7 +27,7 @@ class FeedDiasp:
     self.pod = pod
     self.username = username
     self.password = password
-    self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password)
+    self.diasp = Diasp(pod=self.pod, username=self.username, password=self.password, provider_name="feedDiasp*")
     
     self.keywords = keywords if keywords is not None else []
     #self.hashtags = hashtags if hashtags is not None else []
@@ -63,4 +63,3 @@ class FeedDiasp:
           self.db.mark_as_posted(post['id'])
         except Exception as e:
           print 'Failed to publish: ' + str(e)    
-

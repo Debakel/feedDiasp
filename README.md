@@ -24,6 +24,10 @@ Feed Diaspora with RSS-Feeds or Facebook.
     
 To avoid duplicates, submitted posts will be stored in `posts.txt` (defined in `db`).
 
+## Contributors
+* ![Moritz Duchêne](https://github.com/Debakel)
+* ![Alexey Veretennikov](https://github.com/fourier)
+
 ## License
 
 [Gnu General Public License (GPL), Version 2 or later](https://www.gnu.org/licenses/gpl-2.0.html#SEC1)
