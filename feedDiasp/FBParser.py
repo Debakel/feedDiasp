@@ -30,7 +30,6 @@ class FBParser:
 				post['content'] += htmlparser.unescape(status['message'])
 			elif status['type'] == 'event':
 				# format Event
-				print "ID: " + status['object_id']
 				post['content'] = self.format_event(self.graph.get(status['object_id']))
 				post['link'] = 'https://facebook.com/' + status['id']
 			else:
@@ -43,7 +42,6 @@ class FBParser:
 		graph = facepy.GraphAPI()
 		result = graph.get('oauth/access_token?client_id=' + app_id +'&client_secret='+app_secret+'&grant_type=client_credentials')
 		access_token = result.replace("access_token=","")
-		print access_token
 		return access_token
 		
 	def format_photo(self, json):
@@ -51,8 +49,6 @@ class FBParser:
 		markup =  '![]('+url+')'
 		return markup
 	def format_event(self, json):
-		print "JSON: " + str(json)
-		
 		venue = json['venue']
 		if 'latitude' in venue:
 			longitude=str(venue['longitude'])
