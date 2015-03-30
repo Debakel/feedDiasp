@@ -15,8 +15,8 @@ class RSSParser:
 			elif 'link' in entry:
 				x['id'] = entry.link
 			else:
-				# entry überspringen
-				break
+				# skip entry
+				continue
 			x['title'] = entry.title if 'title' in entry else ''
 			x['link'] = entry.link if 'link' in entry else ''
 			if 'content' in entry:
