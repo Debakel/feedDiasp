@@ -24,10 +24,12 @@ class FBParser:
 			if 'link' in status:
 				post['link'] = status['link']
 			post['title']=''
+			post['content']=''
 			if status['type'] == 'photo':
 				# format Photo
 				post['content'] = self.format_photo(self.graph.get(status['object_id']))
-				post['content'] += htmlparser.unescape(status['message'])
+				if 'message' in status:
+					post['content'] += htmlparser.unescape(status['message'])
 			elif status['type'] == 'event':
 				# format Event
 				post['content'] = self.format_event(self.graph.get(status['object_id']))
