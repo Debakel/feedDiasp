@@ -23,6 +23,8 @@ class FBParser:
 			post['id'] = status['id']
 			if 'link' in status:
 				post['link'] = status['link']
+			else:
+				post['link'] = 'https://facebook.com/' + status['id']
 			post['title']=''
 			post['content']=''
 			if status['type'] == 'photo':
