@@ -17,18 +17,15 @@ class FBParser:
 		for status in statuses:
 			# skip, if post on wall
 			if status['from']['id'] != self.user_id:
-				continue
-				
+				continue			
 			post={}
-			post['id'] = status['id']
+			post_id = status['id']
 			if 'link' in status:
-				post['link'] = status['link']
+				link = status['link']
 			else:
-				post['link'] = 'https://facebook.com/' + status['id']
+				link = 'https://facebook.com/' + status['id']
 			message = status['message'] if 'message' in status else None
 			description = status['description'] if 'description' in status else None
-			post['title']=''
-			post['content']=''
 			if status['type'] == 'photo':
 				# format Photo
 				content = self.format_photo(self.graph.get(status['object_id']))
@@ -48,9 +45,10 @@ class FBParser:
 				# format Post
 				content = htmlparser.unescape(status['message'])
 			
+			post['id'] = post_id
+			post['title']=''
 			post['content'] = content
-			post['link'] = link if link else None
-			
+			post['link'] = link		
 			entries.append(post)
 		return reversed(entries)
 	def get_access_token(self, app_id, app_secret):
