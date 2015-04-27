@@ -25,21 +25,32 @@ class FBParser:
 				post['link'] = status['link']
 			else:
 				post['link'] = 'https://facebook.com/' + status['id']
+			message = status['message'] if 'message' in status else None
+			description = status['description'] if 'description' in status else None
 			post['title']=''
 			post['content']=''
 			if status['type'] == 'photo':
 				# format Photo
-				post['content'] = self.format_photo(self.graph.get(status['object_id']))
-				if 'message' in status:
-					post['content'] += htmlparser.unescape(status['message'])
+				content = self.format_photo(self.graph.get(status['object_id']))
+				if message:
+					content += htmlparser.unescape(message)
 			elif status['type'] == 'event':
 				# format Event
-				post['content'] = self.format_event(self.graph.get(status['object_id']))
-				post['link'] = 'https://facebook.com/' + status['id']
+				content = self.format_event(self.graph.get(status['object_id']))
+				link=None
+			elif status['type'] == 'link':
+				# format Link
+				content = message if message else ""
+				if description:
+					content += "\n---  \n" if message else ""
+					content += description
 			else:
 				# format Post
-				post['content'] = htmlparser.unescape(status['message'])
-
+				content = htmlparser.unescape(status['message'])
+			
+			post['content'] = content
+			post['link'] = link if link else None
+			
 			entries.append(post)
 		return reversed(entries)
 	def get_access_token(self, app_id, app_secret):
