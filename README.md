@@ -8,7 +8,7 @@ Feed Diaspora with RSS-Feeds or Facebook.
 
 ## Usage
 
-    from feedDiasp import FeedDiasp
+    from FeedDiasp import FeedDiasp
     from FBParser import FBParser
     from RSSParser import RSSParser
     
