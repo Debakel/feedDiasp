@@ -15,6 +15,7 @@ class Diasp:
 			self.c.login()	
 			self.stream = diaspy.streams.Stream(self.c)
 			self.logged_in = True
+			print '(OK)'
 		except Exception as e:
 			print 'Failed to login: ' + str(e)
 			raise LoginException(str(e))
