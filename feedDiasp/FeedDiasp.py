@@ -55,7 +55,7 @@ class FeedDiasp:
         if not self.diasp.logged_in:
             self.diasp.login()
         self.feed.update()
-        posts = self.feed.get_entries
+        posts = self.feed.get_entries()
         for post in posts:
             if not self.db.is_published(post['id']):
                 print 'Published: ' + post['title']
