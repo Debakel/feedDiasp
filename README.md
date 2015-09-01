@@ -4,7 +4,7 @@ Feed Diaspora with RSS-Feeds or Facebook.
 
  * feedparser `pip install feedparser`
  * facepy `pip install facepy`
- * diaspy `git submodule init && git submodule update` (do not install with pip, the version in PyPI is not working.)
+ * diaspy `git clone https://github.com/marekjm/diaspy.git /tmp/diaspy && cp -r /tmp/diaspy/diaspy $PYTHONPATH` (do not install with pip, the version in PyPI is not working.)
 
 ## Usage
 
