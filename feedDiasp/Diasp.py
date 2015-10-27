@@ -29,7 +29,7 @@ class Diasp:
       post = '### ' + title + '\n'
     # just source
     elif source and len(source) > 0:
-      post  += '### ' + source + '\n\n'
+      post = '### ' + source + '\n\n'
     post += text
     if hashtags and len(hashtags) > 0:
       post += '  \n'
