@@ -14,9 +14,9 @@ class Diasp:
     def login(self):
         print 'Login as ' + self.username + ' to ' + self.pod
         try:
-            self.c = diaspy.connection.Connection(pod=self.pod, username=self.username, password=self.password)
-            self.c.login()
-            self.stream = diaspy.streams.Stream(self.c)
+            self.connection = diaspy.connection.Connection(pod=self.pod, username=self.username, password=self.password)
+            self.connection.login()
+            self.stream = diaspy.streams.Stream(self.connection, fetch=False)
             self.logged_in = True
         except Exception as e:
             print 'Failed to login: ' + str(e)
