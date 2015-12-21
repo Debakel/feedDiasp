@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import feedparser
-
-
+from html2text import html2text
+import pypandoc
 class RSSParser:
     def __init__(self, url):
         self.url = url
@@ -13,23 +13,33 @@ class RSSParser:
     def get_entries(self):
         entries = []
         for entry in self.feed.entries:
-            x = {}
+            new_post = {}
             if 'id' in entry:
-                x['id'] = entry.id
+                new_post['id'] = entry.id
             elif 'link' in entry:
-                x['id'] = entry.link
+                new_post['id'] = entry.link
             else:
                 # skip entry
                 continue
-            x['title'] = entry.title if 'title' in entry else ''
-            x['link'] = entry.link if 'link' in entry else ''
+            new_post['title'] = entry.title if 'title' in entry else ''
+            new_post['link'] = entry.link if 'link' in entry else ''
             if 'content' in entry:
-                x['content'] = entry.content[0].value
+                new_post['content'] = html2markup(entry.content[0].value)  # html2markup() converts HTML to Markup
             elif 'summary' in entry:
-                x['content'] = entry.summary
+                new_post['content'] = html2markup(entry.summary)
             elif 'description' in entry:
-                x['content'] = entry.description
+                new_post['content'] = html2markup(entry.description)
             else:
-                x['content'] = ''
-            entries.append(x)
+                new_post['content'] = ''
+            entries.append(new_post)
         return reversed(entries)
+
+
+def html2markup(text):
+    try:
+        output = pypandoc.convert(text, 'md', format='html')
+    except OSError:
+        # Pandoc not installed. Switching to html2text instead
+        print "Warning: Pandoc not installed. Pandoc is needed to convert HTML-Posts into Markdown. Try sudo apt-get install pandoc."
+        output = html2text(text)
+    return output
