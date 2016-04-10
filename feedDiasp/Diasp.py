@@ -18,6 +18,7 @@ class Diasp:
             self.connection.login()
             self.stream = diaspy.streams.Stream(self.connection, fetch=False)
             self.logged_in = True
+            return True
         except Exception as e:
             print 'Failed to login: ' + str(e)
             raise LoginException(str(e))
@@ -36,5 +37,7 @@ class Diasp:
         if append is not None:
             text += '  \n' + append
         self.stream.post(text, provider_display_name=self.provider_name)
+
+
 class LoginException(Exception):
     pass

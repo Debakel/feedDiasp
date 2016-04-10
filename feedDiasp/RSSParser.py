@@ -32,7 +32,8 @@ class RSSParser:
             else:
                 new_post['content'] = ''
             entries.append(new_post)
-        return reversed(entries)
+        entries.reverse()
+        return entries
 
 
 def html2markup(text):
