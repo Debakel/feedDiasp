@@ -62,6 +62,9 @@ class FeedDiasp:
                 hashtags = self.find_hashtags(post['content'], self.keywords)
                 if self.hashtags is not None:
                     hashtags.extend(self.hashtags)
+                if 'tags' in post:
+                    tags = (self.format_tag(i) for i in post['tags'])
+                    hashtags.extend(tags)
                 try:
 
                     self.diasp.post(text=post['content'], title=post['title'], hashtags=hashtags, source=post['link'],
@@ -70,3 +73,11 @@ class FeedDiasp:
                 except Exception as e:
                     print 'Failed to publish: ' + str(e)
         return True
+
+    def format_tag(self, tag):
+        '''Remove separators from a tag'''
+        for separator in (' ', "'", '"', '-'):
+            if separator in tag:
+                for _ in range(tag.count(separator)):
+                    tag = tag.replace(separator, '')
+        return tag
