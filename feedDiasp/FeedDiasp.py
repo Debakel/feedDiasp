@@ -78,6 +78,5 @@ class FeedDiasp:
         '''Remove separators from a tag'''
         for separator in (' ', "'", '"', '-'):
             if separator in tag:
-                for _ in range(tag.count(separator)):
-                    tag = tag.replace(separator, '')
+                tag = tag.replace(separator, '')
         return tag
