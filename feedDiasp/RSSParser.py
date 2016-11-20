@@ -45,6 +45,6 @@ def html2markup(text):
     except OSError:
         # Pandoc not installed. Switching to html2text instead
         print(
-            "Warning: Pandoc not installed but is needed to convert HTML-Posts into Markdown. Try pip3 install pandoc.")
+            "Pandoc tool is not installed but is needed to convert HTML-Posts into Markdown.")
         output = html2text(text)
     return output
