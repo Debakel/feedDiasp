@@ -24,6 +24,9 @@ class Diasp:
         print('Login as ' + self.username + ' to ' + self.pod)
         try:
             self.connection = diaspy.connection.Connection(pod=self.pod, username=self.username, password=self.password)
+            if self.connection is None:
+                print('Cannot connect to ' + self.pod)
+                return False
             self.connection.login()
             self.stream = diaspy.streams.Stream(self.connection)
             self.logged_in = True
