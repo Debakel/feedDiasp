@@ -1,7 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+
 import facepy
-import HTMLParser
+import html.parser
 
 
 class FBParser:
@@ -17,7 +17,7 @@ class FBParser:
     def get_entries(self):
         statuses = self.graph.get(self.user + '/posts')['data']
         entries = []
-        htmlparser = HTMLParser.HTMLParser()
+
         for status in statuses:
             # skip, if post on wall
             if status['from']['id'] != self.user_id:
@@ -34,7 +34,7 @@ class FBParser:
                 # format Photo
                 content = self.format_photo(self.graph.get(status['object_id']))
                 if message:
-                    content += htmlparser.unescape(message)
+                    content += html.parser.feed(message)
             elif status['type'] == 'event':
                 # format Event
                 content = self.format_event(self.graph.get(status['object_id']))
@@ -47,7 +47,7 @@ class FBParser:
                     content += description
             else:
                 # format Post
-                content = htmlparser.unescape(status['message'])
+                content = html.parser.feed(status['message'])
 
             post['id'] = post_id
             post['title'] = ''
