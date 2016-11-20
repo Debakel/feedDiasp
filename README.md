@@ -3,11 +3,16 @@ Python 3 version of Feed Diaspora with RSS-Feeds or Facebook.
 
 ## Requirements
 
+The following Python libraries are required:
  * feedparser `pip3 install feedparser`
  * facepy `pip3 install facepy`
  * html2text `pip3 install html2text`
  * pypandoc `pip3 install pypandoc`
- * diaspy `git clone https://github.com/marekjm/diaspy.git /tmp/diaspy && cp -r /tmp/diaspy/diaspy $PYTHONPATH` (do not install with pip, the version in PyPI is not working.)
+ * diaspy `pip3 install diaspy-api`
+ 
+The 'pandoc' tool must be installed too:
+ * On Debian based distributions : `apt-get install pandoc`
+ * On ArchLinux : `pacman -S pandoc`
 
 ## Usage
 
