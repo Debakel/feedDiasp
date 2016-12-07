@@ -1,18 +1,12 @@
 # feedDiasp*
 Feed Diaspora with RSS-Feeds or Facebook.
-## Requirements
+## Installation
 
- * feedparser `pip install feedparser`
- * facepy `pip install facepy`
- * html2text `pip install html2text`
- * pypandoc `pip install pypandoc`
- * diaspy `git clone https://github.com/marekjm/diaspy.git /tmp/diaspy && cp -r /tmp/diaspy/diaspy $PYTHONPATH` (do not install with pip, the version in PyPI is not working.)
+`$ pip install feeddiasp`  
 
 ## Usage
 
-    from FeedDiasp import FeedDiasp
-    from FBParser import FBParser
-    from RSSParser import RSSParser
+    from feeddiasp import FeedDiasp, FBParser, RSSParser
     
     #Sync posts from a facebook site
     fb = FBParser(user='spiegelonline', auth_token='...')
