@@ -10,4 +10,8 @@ setup(name='feeddiasp',
       author_email='',
       license='GPL',
       packages=['feeddiasp'],
-      install_requires=['facepy', 'argparse', 'diaspy', 'feedparser', 'html2text', 'pypandoc'])
+      install_requires=['facepy', 'argparse', 'diaspy', 'feedparser', 'html2text', 'pypandoc', 'requests'],
+      classifiers=['Programming Language :: Python :: 2',
+                   'Programming Language :: Python :: 2.6',
+                   'Programming Language :: Python :: 2.7',],
+      keywords='diaspora facebook bot ')
