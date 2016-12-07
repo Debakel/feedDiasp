@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import feedparser
 from html2text import html2text
+import os
 import pypandoc
 class RSSParser:
     def __init__(self, url):
@@ -31,6 +32,14 @@ class RSSParser:
                 new_post['content'] = html2markup(entry.description)
             else:
                 new_post['content'] = ''
+            # tags
+            tags = []
+            if 'tags' in entry:
+                for tag in entry['tags']:
+                    if 'term' in tag:
+                        tags.append(tag['term'])
+            # append tags at the end of the content
+            new_post['tags'] = tags
             entries.append(new_post)
         entries.reverse()
         return entries
