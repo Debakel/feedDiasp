@@ -58,7 +58,7 @@ class FeedDiasp:
             self.diasp.login()
         for post in posts:
             if not self.db.is_published(post['id']):
-                print 'Published: ' + post['title']
+                print 'Published: ' + post['title'].encode('utf8')
                 hashtags = self.find_hashtags(post['content'], self.keywords)
                 if self.hashtags is not None:
                     hashtags.extend(self.hashtags)
