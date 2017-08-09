@@ -1,4 +1,4 @@
-argparse==1.2.1
+argparse==1.4.0
 diaspy-api==0.5.1
 facepy==1.0.8
 feedparser==5.2.1
