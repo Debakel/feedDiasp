@@ -3,3 +3,4 @@ tests.py
 *.db
 log/
 .idea/
+env/
