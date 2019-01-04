@@ -2,3 +2,4 @@ tests.py
 *.pyc
 *.db
 log/
+.idea/
