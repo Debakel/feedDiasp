@@ -1,13 +1,15 @@
 # feedDiasp*
 Feed Diaspora with RSS-Feeds or Facebook.
-## Requirements
-`$ pip install feeddiasp`  
 
-The 'pandoc' tool must be installed too:
+## Requirements
+`feedDiasp` requires the `pandoc` library for converting HTML into Markdown:
  * On Debian based distributions : `apt-get install pandoc`
  * On ArchLinux : `pacman -S pandoc`
 
-## Usage
+## Installation
+`$ pip install feeddiasp`  
+
+## Usage example
 
     from FeedDiasp import FeedDiasp
     from FBParser import FBParser
