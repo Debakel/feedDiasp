@@ -5,7 +5,8 @@ Feed Diaspora with RSS-Feeds or Facebook.
 `feedDiasp` requires the `pandoc` library for converting HTML into Markdown:
  * On Debian based distributions : `apt-get install pandoc`
  * On ArchLinux : `pacman -S pandoc`
-
+ * On MacOS: `brew install pandoc`
+ 
 ## Installation
 `$ pip install feeddiasp`  
 
