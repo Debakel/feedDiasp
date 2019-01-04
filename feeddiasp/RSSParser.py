@@ -1,12 +1,15 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+
 import feedparser
 from html2text import html2text
 import os
 import pypandoc
+
+
 class RSSParser:
     def __init__(self, url):
         self.url = url
+        self.feed = None
 
     def update(self):
         self.feed = feedparser.parse(self.url)
@@ -50,6 +53,7 @@ def html2markup(text):
         output = pypandoc.convert(text, 'md', format='html')
     except OSError:
         # Pandoc not installed. Switching to html2text instead
-        print "Warning: Pandoc not installed. Pandoc is needed to convert HTML-Posts into Markdown. Try sudo apt-get install pandoc."
+        print(
+            "Pandoc tool is not installed but is needed to convert HTML-Posts into Markdown.")
         output = html2text(text)
     return output

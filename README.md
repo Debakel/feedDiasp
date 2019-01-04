@@ -1,12 +1,17 @@
 # feedDiasp*
 Feed Diaspora with RSS-Feeds or Facebook.
-## Installation
-
+## Requirements
 `$ pip install feeddiasp`  
+
+The 'pandoc' tool must be installed too:
+ * On Debian based distributions : `apt-get install pandoc`
+ * On ArchLinux : `pacman -S pandoc`
 
 ## Usage
 
-    from feeddiasp import FeedDiasp, FBParser, RSSParser
+    from FeedDiasp import FeedDiasp
+    from FBParser import FBParser
+    from RSSParser import RSSParser
     
     #Sync posts from a facebook site
     fb = FBParser(user='spiegelonline', auth_token='...')
@@ -23,6 +28,7 @@ To avoid duplicates, submitted posts will be stored in `posts.txt` (defined in `
 ## Contributors
 * ![Moritz Duchêne](https://github.com/Debakel)
 * ![Alexey Veretennikov](https://github.com/fourier)
+* ![Céline Libéral](https://github.com/celisoft)
 
 ## License
 

@@ -1,27 +1,18 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
-import time
-import sys
 from Diasp import Diasp
 from PostDBCSV import PostDBCSV
-from RSSParser import RSSParser
-from FBParser import FBParser
 
 
 def isstring(s):
     try:
-        return isinstance(s, basestring)
+        return isinstance(s, (str, bytes))
     except NameError:
         return isinstance(s, str)
 
 
 class FeedDiasp:
     def __init__(self, pod, username, password, db, parser, keywords=None, hashtags=None, append=None):
-        # UnicodeEncodeError Workaround
-        reload(sys);
-        sys.setdefaultencoding("utf8")
-
         # Feed
         self.feed = parser
 
@@ -58,7 +49,7 @@ class FeedDiasp:
             self.diasp.login()
         for post in posts:
             if not self.db.is_published(post['id']):
-                print 'Published: ' + post['title'].encode('utf8')
+                print('Published: ' + post['title'])
                 hashtags = self.find_hashtags(post['content'], self.keywords)
                 if self.hashtags is not None:
                     hashtags.extend(self.hashtags)
@@ -71,7 +62,7 @@ class FeedDiasp:
                                     append=self.append)
                     self.db.mark_as_posted(post['id'])
                 except Exception as e:
-                    print 'Failed to publish: ' + str(e)
+                    print('Failed to publish: ' + str(e))
         return True
 
     def format_tag(self, tag):
