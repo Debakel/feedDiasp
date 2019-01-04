@@ -1,7 +1,6 @@
 # feedDiasp*
 Feed Diaspora with RSS-Feeds or Facebook.
-## Setup
-**Note:** If you don't know how to get this running, try [feedDiasp* on my server](https://mrtz.me/feedDiasp).
+
 ### Install requirements
 
  * feedparser `pip install feedparser`
