@@ -3,8 +3,8 @@ import diaspy
 
 
 class Diasp:
-    def __init__(self, pod=None, username=None, password=None, provider_name=''):
-        """Default constructor
+    def __init__(self, pod=None, username=None, password=None, provider_name='feedDiasp*'):
+        """
         :param pod: Diaspora* pod
         :param username: login / username
         :param password: uhm ... the password
