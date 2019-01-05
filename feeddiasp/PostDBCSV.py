@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from datetime import datetime
 import os
+from datetime import datetime
 
 
 class PostDBCSV:

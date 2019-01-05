@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 import feedparser
-from html2text import html2text
-import os
 import pypandoc
+from html2text import html2text
 
 
 class RSSParser:

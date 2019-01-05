@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-import facepy
 import html.parser
+
+import facepy
 
 
 class FBParser:

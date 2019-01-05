@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-from .PostDBCSV import PostDBCSV
 from .Diasp import Diasp
+from .PostDBCSV import PostDBCSV
+
 
 def isstring(s):
     try:
