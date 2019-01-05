@@ -53,7 +53,7 @@ def html2markdown(html: str):
     Returns the given HTML as equivalent Markdown-structured text.
     """
     try:
-        return pypandoc.convert(html, 'md', format='html')
+        return pypandoc.convert_text(html, 'md', format='html')
     except OSError:
         msg = "It's recommended to install the `pandoc` library for converting " \
               "HTML into Markdown-structured text. It tends to have better results" \
