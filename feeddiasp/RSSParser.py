@@ -28,11 +28,11 @@ class RSSParser:
             new_post['title'] = entry.title if 'title' in entry else ''
             new_post['link'] = entry.link if 'link' in entry else ''
             if 'content' in entry:
-                new_post['content'] = html2markup(entry.content[0].value)  # html2markup() converts HTML to Markup
+                new_post['content'] = html2markdown(entry.content[0].value)
             elif 'summary' in entry:
-                new_post['content'] = html2markup(entry.summary)
+                new_post['content'] = html2markdown(entry.summary)
             elif 'description' in entry:
-                new_post['content'] = html2markup(entry.description)
+                new_post['content'] = html2markdown(entry.description)
             else:
                 new_post['content'] = ''
             # tags
@@ -48,12 +48,15 @@ class RSSParser:
         return entries
 
 
-def html2markup(text):
+def html2markdown(html: str):
+    """
+    Returns the given HTML as equivalent Markdown-structured text.
+    """
     try:
-        output = pypandoc.convert(text, 'md', format='html')
+        return pypandoc.convert(html, 'md', format='html')
     except OSError:
-        # Pandoc not installed. Switching to html2text instead
-        print(
-            "Pandoc tool is not installed but is needed to convert HTML-Posts into Markdown.")
-        output = html2text(text)
-    return output
+        msg = "It's recommended to install the `pandoc` library for converting " \
+              "HTML into Markdown-structured text. It tends to have better results" \
+              "than `html2text`, which is now used as a fallback."
+        print(msg)
+        return html2text(html)
