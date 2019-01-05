@@ -2,19 +2,18 @@
 Feed Diaspora with RSS-Feeds or Facebook.
 
 ## Requirements
-`feedDiasp` requires the `pandoc` library for converting HTML into Markdown:
+
+`feedDiasp` requires Python 3 and the `pandoc` library (optional) for converting HTML into Markdown:
  * On Debian based distributions : `apt-get install pandoc`
  * On ArchLinux : `pacman -S pandoc`
  * On MacOS: `brew install pandoc`
- 
+  
 ## Installation
 `$ pip install feeddiasp`  
 
 ## Usage example
 
-    from FeedDiasp import FeedDiasp
-    from FBParser import FBParser
-    from RSSParser import RSSParser
+    from feeddiasp import FeedDiasp, FBParser, RSSParser
     
     #Sync posts from a facebook site
     fb = FBParser(user='spiegelonline', auth_token='...')
@@ -27,6 +26,18 @@ Feed Diaspora with RSS-Feeds or Facebook.
     bot.publish()
     
 To avoid duplicates, submitted posts will be stored in `posts.txt` (defined in `db`).
+
+## Running the tests
+
+```
+$ python -m unittest tests
+```
+
+To run the tests, login credentials for a diaspora account must be stored in the following environment variables:
+* `FEEDDIASP_TEST_POD`
+* `FEEDDIASP_TEST_USERNAME`
+* `FEEDDIASP_TEST_PASSWORD`
+
 
 ## Contributors
 * ![Moritz Duchêne](https://github.com/Debakel)
