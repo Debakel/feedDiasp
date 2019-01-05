@@ -1,4 +1,3 @@
-tests.py
 *.pyc
 *.db
 log/
