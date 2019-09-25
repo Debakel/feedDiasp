@@ -15,6 +15,10 @@ class RSSParser:
 
     def update(self):
         self.feed = feedparser.parse(self.url)
+        if self.feed.bozo == 1:
+            # Feed is malformed
+            # See https://pythonhosted.org/feedparser/bozo.html
+            raise self.feed.bozo_exception
 
     def get_entries(self) -> List[Post]:
         """ Return the feed entries as a list of diaspora post instances.
