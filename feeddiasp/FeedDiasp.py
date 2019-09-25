@@ -1,27 +1,20 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+from typing import List
 
-import time
-import sys
-from Diasp import Diasp
-from PostDBCSV import PostDBCSV
-from RSSParser import RSSParser
-from FBParser import FBParser
+from feeddiasp.dataclasses import Post
+from .Diasp import Diasp
+from .PostDBCSV import PostDBCSV
 
 
 def isstring(s):
     try:
-        return isinstance(s, basestring)
+        return isinstance(s, (str, bytes))
     except NameError:
         return isinstance(s, str)
 
 
 class FeedDiasp:
     def __init__(self, pod, username, password, db, parser, keywords=None, hashtags=None, append=None):
-        # UnicodeEncodeError Workaround
-        reload(sys);
-        sys.setdefaultencoding("utf8")
-
         # Feed
         self.feed = parser
 
@@ -53,25 +46,23 @@ class FeedDiasp:
 
     def publish(self):
         self.feed.update()
-        posts = self.feed.get_entries()
+        posts: List[Post] = self.feed.get_entries()
         if not self.diasp.logged_in and posts.__len__() > 0:
             self.diasp.login()
         for post in posts:
-            if not self.db.is_published(post['id']):
-                print 'Published: ' + post['title'].encode('utf8')
-                hashtags = self.find_hashtags(post['content'], self.keywords)
+            if not self.db.is_published(post.id):
+                print('Published: ' + post.title)
+                hashtags = self.find_hashtags(post.content, self.keywords)
                 if self.hashtags is not None:
                     hashtags.extend(self.hashtags)
-                if 'tags' in post:
-                    tags = (self.format_tag(i) for i in post['tags'])
-                    hashtags.extend(tags)
+                hashtags.extend((self.format_tag(i) for i in post.tags))
                 try:
 
-                    self.diasp.post(text=post['content'], title=post['title'], hashtags=hashtags, source=post['link'],
+                    self.diasp.post(text=post.content, title=post.title, hashtags=hashtags, source=post.link,
                                     append=self.append)
-                    self.db.mark_as_posted(post['id'])
+                    self.db.mark_as_posted(post.id)
                 except Exception as e:
-                    print 'Failed to publish: ' + str(e)
+                    print('Failed to publish: ' + str(e))
         return True
 
     def format_tag(self, tag):

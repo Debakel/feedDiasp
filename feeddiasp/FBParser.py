@@ -1,7 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+
+import html.parser
+from typing import List
+
 import facepy
-import HTMLParser
+
+from feeddiasp.dataclasses import Post
 
 
 class FBParser:
@@ -14,12 +18,12 @@ class FBParser:
     def update(self):
         pass
 
-    def get_entries(self):
+    def get_entries(self) -> List[Post]:
         statuses = self.graph.get(self.user + '/posts')['data']
         entries = []
-        htmlparser = HTMLParser.HTMLParser()
+
         for status in statuses:
-            # skip, if post on wall
+            # Skip posts from other users (posted on the wall)
             if status['from']['id'] != self.user_id:
                 continue
             post = {}
@@ -34,7 +38,7 @@ class FBParser:
                 # format Photo
                 content = self.format_photo(self.graph.get(status['object_id']))
                 if message:
-                    content += htmlparser.unescape(message)
+                    content += html.parser.feed(message)
             elif status['type'] == 'event':
                 # format Event
                 content = self.format_event(self.graph.get(status['object_id']))
@@ -47,14 +51,17 @@ class FBParser:
                     content += description
             else:
                 # format Post
-                content = htmlparser.unescape(status['message'])
+                content = html.parser.feed(status['message'])
 
-            post['id'] = post_id
-            post['title'] = ''
-            post['content'] = content
-            post['link'] = link
+            post = Post(
+                id=post_id,
+                content=content,
+                link=link
+            )
             entries.append(post)
-        return reversed(entries)
+
+        entries.reverse()
+        return entries
 
     def get_access_token(self, app_id, app_secret):
         graph = facepy.GraphAPI()

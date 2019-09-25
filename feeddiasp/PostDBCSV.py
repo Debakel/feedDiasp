@@ -1,8 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
-from datetime import datetime
 import os
+from datetime import datetime
 
 
 class PostDBCSV:

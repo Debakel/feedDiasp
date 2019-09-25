@@ -1,9 +1,6 @@
-argparse==1.4.0
-diaspy-api==0.5.1
-facepy==1.0.9
+diaspy-api==0.6.0
+facepy==1.0.10
 feedparser==5.2.1
-html2text==2016.9.19
+html2text==2019.8.11
 pypandoc==1.4
-requests==2.18.3
-six==1.10.0
-wsgiref==0.1.2
+dataclasses==0.6
