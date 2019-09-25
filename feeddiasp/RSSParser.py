@@ -1,15 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import feedparser
-from html2text import html2text
-import os
 import pypandoc
+from html2text import html2text
+
+
 class RSSParser:
     def __init__(self, url):
         self.url = url
 
     def update(self):
         self.feed = feedparser.parse(self.url)
+        if self.feed.bozo == 1:
+            # Feed is malformed
+            # See https://pythonhosted.org/feedparser/bozo.html
+            raise self.feed.bozo_exception
 
     def get_entries(self):
         entries = []
