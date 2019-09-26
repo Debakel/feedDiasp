@@ -1,6 +1,6 @@
 diaspy-api==0.6.0
 facepy==1.0.10
 feedparser==5.2.1
-html2text==2019.8.11
+html2text==2019.9.26
 pypandoc==1.4
 dataclasses==0.6
